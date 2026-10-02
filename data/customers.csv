@@ -1,0 +1,9 @@
+customer_id,customer_name,email,city,state,signup_date
+C001,Aarav Sharma,aarav@example.com,Pune,Maharashtra,2025-01-15
+C002,Diya Patel,diya@example.com,Mumbai,Maharashtra,2025-02-20
+C003,Rohan Verma,rohan@example.com,Indore,Madhya Pradesh,2025-03-05
+C004,Ananya Singh,ananya@example.com,Delhi,Delhi,2025-03-18
+C005,Vivaan Gupta,vivaan@example.com,Bengaluru,Karnataka,2025-04-10
+C006,Meera Joshi,meera@example.com,Jaipur,Rajasthan,2025-04-22
+C007,Kabir Khan,kabir@example.com,Hyderabad,Telangana,2025-05-01
+C008,Ishita Rao,ishita@example.com,Chennai,Tamil Nadu,2025-05-12

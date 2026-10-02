@@ -1,0 +1,7 @@
+[
+  {"event_id":"E001","customer_id":"C001","event_type":"LOGIN","event_ts":"2025-07-01T09:15:00","device":{"type":"mobile","os":"Android"},"tags":["returning","high_value"]},
+  {"event_id":"E002","customer_id":"C002","event_type":"PRODUCT_VIEW","event_ts":"2025-07-02T10:30:00","device":{"type":"web","os":"Windows"},"tags":["accessories"]},
+  {"event_id":"E003","customer_id":"C003","event_type":"CART_ADD","event_ts":"2025-07-03T12:45:00","device":{"type":"web","os":"macOS"},"tags":["monitor"]},
+  {"event_id":"E004","customer_id":"C004","event_type":"PURCHASE","event_ts":"2025-07-04T15:10:00","device":{"type":"mobile","os":"iOS"},"tags":["audio","repeat"]},
+  {"event_id":"E005","customer_id":"C005","event_type":"LOGIN","event_ts":"2025-07-05T18:25:00","device":{"type":"mobile","os":"Android"},"tags":["new_customer"]}
+]

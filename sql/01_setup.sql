@@ -1,0 +1,75 @@
+-- ============================================================
+-- 01_SETUP.SQL
+-- Database, schemas, file formats, stages and raw tables
+-- ============================================================
+
+CREATE OR REPLACE WAREHOUSE SALES_ANALYTICS_WH
+  WITH WAREHOUSE_SIZE = 'XSMALL'
+  AUTO_SUSPEND = 60
+  AUTO_RESUME = TRUE;
+
+CREATE OR REPLACE DATABASE SALES_ANALYTICS_DB;
+
+CREATE OR REPLACE SCHEMA SALES_ANALYTICS_DB.RAW;
+CREATE OR REPLACE SCHEMA SALES_ANALYTICS_DB.STAGING;
+CREATE OR REPLACE SCHEMA SALES_ANALYTICS_DB.PRODUCTION;
+
+USE WAREHOUSE SALES_ANALYTICS_WH;
+USE DATABASE SALES_ANALYTICS_DB;
+
+-- CSV and JSON file formats
+CREATE OR REPLACE FILE FORMAT RAW.CSV_FORMAT
+  TYPE = CSV
+  SKIP_HEADER = 1
+  FIELD_OPTIONALLY_ENCLOSED_BY = '"'
+  NULL_IF = ('NULL', '');
+
+CREATE OR REPLACE FILE FORMAT RAW.JSON_FORMAT
+  TYPE = JSON
+  STRIP_OUTER_ARRAY = TRUE;
+
+-- Internal stage. Upload the repository's data files here.
+CREATE OR REPLACE STAGE RAW.SALES_STAGE;
+
+-- Raw relational landing tables
+CREATE OR REPLACE TABLE RAW.RAW_CUSTOMERS (
+  customer_id STRING,
+  customer_name STRING,
+  email STRING,
+  city STRING,
+  state STRING,
+  signup_date DATE,
+  loaded_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE OR REPLACE TABLE RAW.RAW_PRODUCTS (
+  product_id STRING,
+  product_name STRING,
+  category STRING,
+  unit_price NUMBER(12,2),
+  loaded_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE OR REPLACE TABLE RAW.RAW_ORDERS (
+  order_id STRING,
+  customer_id STRING,
+  order_date DATE,
+  status STRING,
+  region STRING,
+  loaded_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE OR REPLACE TABLE RAW.RAW_ORDER_ITEMS (
+  order_item_id STRING,
+  order_id STRING,
+  product_id STRING,
+  quantity NUMBER,
+  unit_price NUMBER(12,2),
+  loaded_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- Semi-structured landing table
+CREATE OR REPLACE TABLE RAW.RAW_CUSTOMER_EVENTS (
+  event_data VARIANT,
+  loaded_at TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+);
